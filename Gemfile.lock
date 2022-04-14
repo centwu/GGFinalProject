@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/king601/devise-bootstrapped.git
+  revision: 59e23f0673c9a273be765ca26091c5792cd25fa7
+  branch: bootstrap4
+  specs:
+    devise-bootstrapped (0.2.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -100,9 +107,6 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    devise-bootstrap5 (0.1.3)
-    devise-i18n (1.10.2)
-      devise (>= 4.8.0)
     diff-lcs (1.5.0)
     digest (3.1.0)
     erubi (1.10.0)
@@ -286,9 +290,8 @@ DEPENDENCIES
   bootstrap (~> 4.5.2)
   capybara
   debug
-  devise
-  devise-bootstrap5
-  devise-i18n
+  devise (~> 4.8, >= 4.8.1)
+  devise-bootstrapped!
   factory_bot_rails
   faker
   importmap-rails

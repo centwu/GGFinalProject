@@ -8,9 +8,19 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
 		<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>	
+		<style>
+			body {
+				background-image: url("medina-catering-AdtqezIqv7c-unsplash.jpg");
+				background-position: center;
+			  background-repeat: no-repeat;
+  			background-size: cover;
+			}
+		</style>
 	</head>
 
   <body class="d-flex flex-column min-vh-100">
-    <%= yield %>
+		<%= render 'partials/header' %>
+		<%= yield %>
+		<%= render 'partials/footer' %>
   </body>
 </html>

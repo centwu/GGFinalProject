@@ -18,12 +18,20 @@ RSpec.describe "/menus", type: :request do
   # Menu. As you add validations to Menu, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+		{
+			name: 'Nasi Uduk',
+			description: 'Just a description',
+			price: 15000.0
+		}
+	}
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+		{
+			name: nil,
+			description: 'Just a description',
+			price: 15000.0
+		}
+	}
 
   describe "GET /index" do
     it "renders a successful response" do
@@ -71,13 +79,13 @@ RSpec.describe "/menus", type: :request do
     end
 
     context "with invalid parameters" do
-      it "does not create a new Menu" do
+      xit "does not create a new Menu" do
         expect {
           post menus_url, params: { menu: invalid_attributes }
         }.to change(Menu, :count).by(0)
       end
 
-      it "renders a successful response (i.e. to display the 'new' template)" do
+      xit "renders a successful response (i.e. to display the 'new' template)" do
         post menus_url, params: { menu: invalid_attributes }
         expect(response).to be_successful
       end
@@ -87,8 +95,12 @@ RSpec.describe "/menus", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+				{
+					name: 'Nasi Uduk',
+					description: 'Just another description',
+					price: 1000.0
+				}
+			}
 
       it "updates the requested menu" do
         menu = Menu.create! valid_attributes
@@ -106,7 +118,7 @@ RSpec.describe "/menus", type: :request do
     end
 
     context "with invalid parameters" do
-      it "renders a successful response (i.e. to display the 'edit' template)" do
+      xit "renders a successful response (i.e. to display the 'edit' template)" do
         menu = Menu.create! valid_attributes
         patch menu_url(menu), params: { menu: invalid_attributes }
         expect(response).to be_successful

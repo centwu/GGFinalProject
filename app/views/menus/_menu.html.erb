@@ -1,17 +1,20 @@
 <div id="<%= dom_id menu %>">
-  <p>
-    <strong>Name:</strong>
-    <%= menu.name %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= menu.description %>
-  </p>
-
-  <p>
-    <strong>Price:</strong>
-    <%= menu.price %>
-  </p>
-
+	<tr>
+		<td>
+	    <%= menu.name %>
+	  </td>
+	
+	  <td>
+	    <%= menu.description %>
+	  </td>
+	
+	  <td>
+	    <%= menu.price %>
+	  </td>
+		<% if user_signed_in? %>
+		<td>
+      <%= link_to "Show this menu", menu %>
+    </td>
+		<% end %>
+	</tr>	
 </div>

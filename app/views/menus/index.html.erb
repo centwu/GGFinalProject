@@ -1,12 +1,25 @@
 <h1>Menus</h1>
 
 <div id="menus">
-  <% @menus.each do |menu| %>
+	<table>
+		<tr>
+			<th>
+				Name
+			</th>
+			<th>
+				Description
+			</th>
+			<th>
+				Price
+			</th>
+		</tr>
+		<% @menus.each do |menu| %>
     <%= render menu %>
-    <p>
-      <%= link_to "Show this menu", menu %>
-    </p>
   <% end %>
+	</table>
+
 </div>
 
+<% if user_signed_in? %>		
 <%= link_to "New menu", new_menu_path %>
+<% end %>

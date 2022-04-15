@@ -2,11 +2,6 @@ class MenusController < ApplicationController
 	before_action :authenticate_user!
 	before_action :authorize_admin, only: :index
   before_action :set_menu, only: %i[ show edit update destroy ]
-
-	def authorize_admin
-    redirect_back fallback_location: root_path, status: 401 unless current_user.admin
-    #redirects to previous page
-	end
 	
   # GET /menus or /menus.json
   def index

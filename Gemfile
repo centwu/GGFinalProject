@@ -54,6 +54,7 @@ gem "bootsnap", require: false
 gem "nokogiri"
 gem 'devise', '~> 4.8', '>= 4.8.1'
 gem 'devise-bootstrapped', github: 'king601/devise-bootstrapped', branch: 'bootstrap4'
+gem "select2-rails"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

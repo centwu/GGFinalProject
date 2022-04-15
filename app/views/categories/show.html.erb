@@ -1,10 +1,11 @@
-<p style="color: green"><%= notice %></p>
-
-<%= render @category %>
-
+<div class="container-fluid px-5 py-5">
+	<div id="menu-wrap" class="row">
+		<%= render @category.menus %>
+			<% if current_user && current_user.admin? %>
+	  <%= link_to "Edit this category", edit_category_path(@category) %> |
+	  <%= link_to "Back to categories", categories_path %>
+	
+	  <%= button_to "Destroy this category", @category, method: :delete %>
+	<% end %>
+	</div>
 <div>
-  <%= link_to "Edit this category", edit_category_path(@category) %> |
-  <%= link_to "Back to categories", categories_path %>
-
-  <%= button_to "Destroy this category", @category, method: :delete %>
-</div>

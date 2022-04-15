@@ -1,9 +1,16 @@
-<table>
-	<%= render @menu %>
-</table>
-<div>
-  <%= link_to "Edit this menu", edit_menu_path(@menu) %> |
-  <%= link_to "Back to menus", menus_path %>
+<div class="container-fluid py-5 px-5">
+	<table>	
+		<%= render @menu %>
+	</table>
+	<ul class="list-unstyled nav">
+		<%= render @menu.categories %>
+	</ul>
+</div>
+<%= link_to "Back to menus", menus_path %>
 
+<div>
+	<% if current_user && current_user.admin? %>
+  <%= link_to "Edit this menu", edit_menu_path(@menu) %> |
   <%= button_to "Destroy this menu", @menu, method: :delete %>
+	<% end %>
 </div>

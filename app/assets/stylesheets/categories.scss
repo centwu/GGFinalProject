@@ -1,0 +1,12 @@
+.category-link {
+	padding: 4px;
+	a {
+		color: #000;		
+		.bg-secondary{
+			background-color: #0F0 !important;
+			&:hover{
+				background-color: #FF0 !important;
+			}
+		}
+	}
+}

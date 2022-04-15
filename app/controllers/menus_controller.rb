@@ -1,7 +1,6 @@
 class MenusController < ApplicationController
-	before_action :authenticate_user!
-	before_action :authorize_admin, only: :index
-  before_action :set_menu, only: %i[ show edit update destroy ]
+	before_action :authorize_admin, only: [:new, :edit, :update, :destroy]	
+	before_action :set_menu, only: %i[show edit update destroy]
 	
   # GET /menus or /menus.json
   def index
@@ -67,6 +66,6 @@ class MenusController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def menu_params
-      params.require(:menu).permit(:name, :description, :price)
+      params.require(:menu).permit(:name, :description, :price, :category_ids => [])
     end
 end

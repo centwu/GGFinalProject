@@ -21,8 +21,8 @@ ActiveRecord::Schema.define(version: 2022_04_15_003440) do
   create_table "categories_menus", id: false, force: :cascade do |t|
     t.integer "category_id", null: false
     t.integer "menu_id", null: false
-    t.index ["category_id", "menu_id"], name: "index_categories_menus_on_category_id_and_menu_id"
-    t.index ["menu_id", "category_id"], name: "index_categories_menus_on_menu_id_and_category_id"
+    t.index ["category_id"], name: "index_categories_menus_on_category_id"
+    t.index ["menu_id"], name: "index_categories_menus_on_menu_id"
   end
 
   create_table "menus", force: :cascade do |t|

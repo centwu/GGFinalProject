@@ -20,6 +20,6 @@
 
 </div>
 
-<% if current_user.admin %>		
+<% if current_user && current_user.admin? %>		
 <%= link_to "New menu", new_menu_path %>
 <% end %>

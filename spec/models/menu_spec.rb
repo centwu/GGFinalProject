@@ -15,25 +15,33 @@ RSpec.describe Menu, type: :model do
 
 	it 'is invalid without a name' do
     menu.name = nil
+		
     menu.valid?
+		
     expect(menu.errors[:name]).to include("can't be blank")
   end
 
 	it 'is invalid without a blank name' do
     menu.name = ''
+		
     menu.valid?
+		
     expect(menu.errors[:name]).to include("can't be blank")
   end
 
 	it 'is invalid without a description' do
     menu.description = nil
+		
     menu.valid?
+		
     expect(menu.errors[:description]).to include("can't be blank")
   end
 
   it 'is invalid without a blank description' do
     menu.description = ''
+		
     menu.valid?
+		
     expect(menu.errors[:description]).to include("can't be blank")
   end
 
@@ -48,8 +56,17 @@ RSpec.describe Menu, type: :model do
 
 	it 'is invalid with a non numeric price' do
     menu.price = '$1000'
+		
     menu.valid?
 
     expect(menu.errors[:price]).to include('is not a number')
+  end
+
+	it 'is invalid with a price less than 0.01' do
+    menu.price = 0.009
+		
+    menu.valid?
+
+    expect(menu.errors[:price]).to include('must be greater than or equal to 0.01')
   end
 end

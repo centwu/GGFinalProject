@@ -69,4 +69,12 @@ RSpec.describe Menu, type: :model do
 
     expect(menu.errors[:price]).to include('must be greater than or equal to 0.01')
   end
+
+	it 'is invalid with description more than 150 characters' do
+		menu.description = "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgr"
+
+		menu.valid?
+
+		expect(menu.errors[:description]).to include('150 characters is the maximum allowed')
+	end
 end

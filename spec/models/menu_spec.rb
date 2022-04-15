@@ -26,15 +26,15 @@ RSpec.describe Menu, type: :model do
   end
 
 	it 'is invalid without a description' do
-    food.description = nil
-    food.valid?
-    expect(food.errors[:description]).to include("can't be blank")
+    menu.description = nil
+    menu.valid?
+    expect(menu.errors[:description]).to include("can't be blank")
   end
 
   it 'is invalid without a blank description' do
-    food.description = ''
-    food.valid?
-    expect(food.errors[:description]).to include("can't be blank")
+    menu.description = ''
+    menu.valid?
+    expect(menu.errors[:description]).to include("can't be blank")
   end
 
 	it 'is invalid with a duplicate name' do
@@ -44,5 +44,12 @@ RSpec.describe Menu, type: :model do
     menu.valid?
 
     expect(menu.errors[:name]).to include('has already been taken')
+  end
+
+	it 'is invalid with a non numeric price' do
+    menu.price = '$1000'
+    menu.valid?
+
+    expect(menu.errors[:price]).to include('is not a number')
   end
 end

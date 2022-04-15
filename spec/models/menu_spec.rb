@@ -24,4 +24,10 @@ RSpec.describe Menu, type: :model do
     menu.valid?
     expect(menu.errors[:name]).to include("can't be blank")
   end
+
+	it 'is invalid without a description' do
+    menu.description = nil
+    menu.valid?
+    expect(menu.errors[:description]).to include("can't be blank")
+  end
 end

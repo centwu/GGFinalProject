@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2022_04_16_061349) do
   create_table "menus_orders", id: false, force: :cascade do |t|
     t.integer "menu_id", null: false
     t.integer "order_id", null: false
-    t.integer "price"
+    t.float "price"
     t.integer "quantity"
     t.float "sub_total"
     t.index ["menu_id", "order_id"], name: "index_menus_orders_on_menu_id_and_order_id"

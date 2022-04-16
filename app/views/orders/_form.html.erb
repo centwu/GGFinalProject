@@ -1,32 +1,44 @@
-<%= form_with(model: order) do |form| %>
-  <% if order.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
-
-      <ul>
-        <% order.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div>
-    <%= form.label :email, style: "display: block" %>
-    <%= form.text_field :email %>
-  </div>
-
-  <div>
-    <%= form.label :status, style: "display: block" %>
-    <%= form.number_field :status %>
-  </div>
-
-  <div>
-    <%= form.label :total, style: "display: block" %>
-    <%= form.text_field :total %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
+<%= form_for(@order) do |f| %>  
+	<% if @order.errors.any? %>  
+		<div id="error_explanation">  
+			<h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>  
+			<ul>  
+			<% @order.errors.full_messages.each do |message| %>  
+			 <li><%= message %></li>  
+			<% end %>  
+			</ul>  
+		</div>
+	<% end %>  
+	<div class="form-group row">
+		<div class="col-12 col-md-2">
+			<%= f.label :email %><br>
+		</div>
+		<div class="col-12 col-md-4">
+			<%= f.text_field :email, class: 'form-control input-lg' %>
+		</div>
+	</div>
+	<%= f.fields_for :menus_orders do |builder| %>   
+		<%= render 'menus_order_fields', f: builder %>   
+	<% end %>   
+	<%= link_to_add_fields "Add Menu", f, :menus_orders %>   
+	<div class="form-footer pt-5 border-top">
+		<%= f.submit class: 'btn btn-primary btn-default' %>  
+	</div>  
 <% end %>
+
+<script type="text/javascript">   
+	jQuery(function() {   
+		$('form').on('click', '.remove_fields', function(event) {   
+		 	$(this).prev('input[type=hidden]').val('1');   
+			$(this).closest('fieldset').hide();   
+			return event.preventDefault();   
+		});   
+	 	return $('form').on('click', '.add_fields', function(event) {   
+			var regexp, time;   
+			time = new Date().getTime();   
+			regexp = new RegExp($(this).data('id'), 'g');   
+			$(this).before($(this).data('fields').replace(regexp, time));   
+			return event.preventDefault();   
+	 	});   
+	});   
+</script> 

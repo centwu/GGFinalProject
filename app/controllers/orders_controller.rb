@@ -23,6 +23,7 @@ class OrdersController < ApplicationController
   # POST /orders or /orders.json
   def create
     @order = Order.new(order_params)
+		@order.status = 1
 
     respond_to do |format|
       if @order.save
@@ -66,6 +67,6 @@ class OrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def order_params
-      params.require(:order).permit(:email, :status, :total)
+      params.require(:order).permit(:email, :status, :total, menus_orders_attributes: [:id, :menu_id, :price, :quantity, :total, :_destroy])
     end
 end

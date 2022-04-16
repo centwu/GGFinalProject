@@ -18,4 +18,10 @@ RSpec.describe Category, type: :model do
     category.valid?
     expect(category.errors[:name]).to include("can't be blank")
   end
+
+	it 'is invalid with a blank name' do
+    category.name = ""
+    category.valid?
+    expect(category.errors[:name]).to include("can't be blank")
+  end
 end

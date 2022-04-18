@@ -23,7 +23,6 @@ class OrdersController < ApplicationController
   # POST /orders or /orders.json
   def create
     @order = Order.new(order_params)
-		@order.status = 1
 
     respond_to do |format|
       if @order.save
@@ -59,6 +58,12 @@ class OrdersController < ApplicationController
     end
   end
 
+	def change_status
+    @order = Order.find(params[:id])
+    @property.update!(status: params[:status])
+		redirect_to :back
+  end
+	
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order
@@ -67,6 +72,6 @@ class OrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def order_params
-      params.require(:order).permit(:email, :status, :total, menus_orders_attributes: [:id, :menu_id, :price, :quantity, :total, :_destroy])
+      params.require(:order).permit(:email, :status, :total, menus_orders_attributes: [:menu_id, :quantity, :_destroy])
     end
 end

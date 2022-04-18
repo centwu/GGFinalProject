@@ -4,14 +4,35 @@
     <%= order.email %>
   </p>
 
-  <p>
+	<p>
     <strong>Status:</strong>
     <%= order.status %>
   </p>
-
-  <p>
-    <strong>Total:</strong>
-    <%= order.total %>
-  </p>
-
+	
+	<table>
+		<thead>
+			<tr>
+				<td style="width: 15%">Name</td>
+				<td style="width: 15%">Price</td>
+				<td style="width: 15%">Quantity</td>
+				<td style="width: 15%">Sub-total</td>
+			</tr>
+		</thead>
+		<tbody>
+			<% order.menus_orders.each do |menu| %>
+			<tr>
+				<td><%= menu.menu.name %></td>
+				<td><%= menu.price %></td>
+				<td><%= menu.quantity %></td>
+				<td><%= menu.sub_total %></td>
+			</tr>
+			<% end %>
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Total</td>
+				<td> <%= order.total %> </td>
+			</tr>
+		</tbody>
+	</table>
 </div>

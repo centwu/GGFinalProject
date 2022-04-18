@@ -38,14 +38,14 @@ ActiveRecord::Schema.define(version: 2022_04_16_061349) do
     t.integer "order_id", null: false
     t.float "price"
     t.integer "quantity"
-    t.float "sub_total"
+    t.float "sub_total", default: 0.0
     t.index ["menu_id", "order_id"], name: "index_menus_orders_on_menu_id_and_order_id"
     t.index ["order_id", "menu_id"], name: "index_menus_orders_on_order_id_and_menu_id"
   end
 
   create_table "orders", force: :cascade do |t|
     t.string "email"
-    t.integer "status", default: 1
+    t.string "status", default: "new"
     t.float "total"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

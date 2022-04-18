@@ -60,8 +60,8 @@ class OrdersController < ApplicationController
 
 	def change_status
     @order = Order.find(params[:id])
-    @property.update!(status: params[:status])
-		redirect_to :back
+    @order.update!(status: params[:status])
+		redirect_to orders_path
   end
 	
   private

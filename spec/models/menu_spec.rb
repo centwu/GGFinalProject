@@ -9,7 +9,7 @@ RSpec.describe Menu, type: :model do
     expect(FactoryBot.build(:menu)).to be_valid
   end
 
-	it 'is valid with a name and a description' do
+	it 'is valid with name, description, price, and category' do
     expect(menu).to be_valid
   end
 

@@ -1,7 +1,10 @@
 FactoryBot.define do
   factory :order do
-    email { "MyString" }
-    status { 1 }
-    total { 1.5 }
+    email { Faker::Internet.email }
+    status { }
+    total { }
+		menus_orders_attributes {
+			
+		}
   end
 end

@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
 
   # GET /orders or /orders.json
   def index
-    @orders = Order.all
+    @orders = Order.where(created_at: Time.zone.now.in_time_zone.beginning_of_day..Time.zone.now.in_time_zone.end_of_day)
   end
 
   # GET /orders/1 or /orders/1.json
@@ -23,8 +23,7 @@ class OrdersController < ApplicationController
   # POST /orders or /orders.json
   def create
     @order = Order.new(order_params)
-
-    respond_to do |format|
+		respond_to do |format|
       if @order.save
         format.html { redirect_to order_url(@order), notice: "Order was successfully created." }
         format.json { render :show, status: :created, location: @order }
@@ -32,6 +31,8 @@ class OrdersController < ApplicationController
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
+			@order[:total] = @order.total
+			@order.save
     end
   end
 
@@ -45,6 +46,8 @@ class OrdersController < ApplicationController
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
+			@order[:total] = @order.total
+			@order.save
     end
   end
 
@@ -65,12 +68,10 @@ class OrdersController < ApplicationController
   end
 	
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_order
       @order = Order.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def order_params
       params.require(:order).permit(:email, :status, :total, menus_orders_attributes: [:menu_id, :quantity, :_destroy])
     end

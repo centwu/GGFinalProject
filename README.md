@@ -1,25 +1,59 @@
-# Rails on Replit
+# Gigih-Family-Catering
 
-This is a template to get you started with Rails on Replit. It's ready to go so you can just hit run and start coding!
+Generasi GIGIH 2.0 Backend Track Final Project
 
-This template was generated using `rails new` (after you install the `rails` gem from the packager sidebar) so you can always do that if you prefer to set it up from scratch. The only had two make config changes we had to make to run it on Replit:
+![alt text](https://github.com/Jokushu/GGFinalProject/blob/main/public/Header%20%23GenerasiGIGIH.png)
 
-- bind the app on `0.0.0.0` instead of `localhost` (see `.replit`)
-- allow `*.repl.co` hosts (see `config/environments/development.rb`)
-- allow the app to be iframed on `replit.com` (see `config/application.rb`)
+## Introduction
 
-## Running the app
+This is a point of sale application for restaurants, created in Rails 7
 
-Simple hit run! You can edit the run command from the `.replit` file.
+## Project Scope
 
-## Running commands
+```
+Key functionality includes the ability to:
+- Create, Update, Delete Categories, Menus, and Orders. (only available as an Admin)
+- Show daily revenue. (only available as an Admin)
+- Show the Menu with associated details.
+- Show the Order/Order Items - with associated details.
+```
 
-Start every command with `bundle exec` so that it runs in the context of the installed gems environment. The console pane will give you output from the server but you can run arbitrary command from the shell without stopping the server.
+## To Get Started
 
-## Database
+Project Ruby version: `3.0.3`, if your ruby version installed on device is different, try to change versions in `Gemfile` and `.ruby-version files`.
+If you don't have ruby installed or don't know version of ruby installed on your device, you can check [this guide](https://www.ruby-lang.org/en/documentation/installation/)
 
-SQLite would work in development but we don't recommend running it in production. Instead look into using the built-in [Replit database](http://docs.replit.com/misc/database). Otherwise you are welcome to connect databases from your favorite provider. 
+## Setup Rails App
 
-## Help
+### Clone git repo:
 
-If you need help you might be able to find an answer on our [docs](https://docs.replit.com) page. Alternatively you can [ask in the community](https://replit.com/talk/ask). Feel free to report bugs [here](https://replit.com/bugs) and give us feedback [here](https://Replit/feedback).
+```
+git clone [url of repo]
+```
+
+### In project folder, install dependencies:
+
+```
+bundle install
+```
+
+### Execute database creation and migration setup:
+
+```
+rake db:create
+rake db:migrate
+```
+
+### Start the Rails app:
+
+```
+rails s
+```
+
+You can find your app by pointing your browser to [http://localhost:3000](http://localhost:3000)
+
+### Run test
+
+```
+rspec -fd
+```

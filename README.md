@@ -37,11 +37,17 @@ git clone [url of repo]
 bundle install
 ```
 
-### Execute database creation and migration setup:
+### Execute database creation, migration, and seeding setup:
 
 ```
 rake db:create
 rake db:migrate
+rake db:seed
+```
+For demo, you can use admin user from seeds file:
+```
+Email: admin@admin.test
+Password: 123456
 ```
 
 ### Start the Rails app:

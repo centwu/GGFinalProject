@@ -1,0 +1,40 @@
+<style>
+	.table td {
+		vertical-align: middle;
+	}
+</style>
+
+<h1>Daily Report: <%= Time.now.in_time_zone("Bangkok").to_date %></h1>
+
+<table class="table table-striped align-center table-hover">
+	<thead class="thead-dark">
+		<tr>
+			<th>Email</th>
+			<th>Menu</th>
+			<th>Price</th>
+			<th>Quantity</th>
+			<th>Sub-total</th>
+			<th>Total</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @reports.each do |report| %>
+			<% i = 1 %>
+			<% report.menus_orders.each do |menu| %>
+				<tr>
+					<% if i == 1 %>
+						<td rowspan=<%= report.menus.length %>> <%= report.email %> </td>
+					<% end %>
+					<td><%= menu.menu.name %></td>
+					<td><%= menu.price %></td>
+					<td><%= menu.quantity %></td>
+					<td><%= menu.sub_total %></td>	
+					<% if i == 1 %>
+						<td rowspan=<%= report.menus.length %>> <%= report.total %> </td>
+					<% end %>
+					<% i += 1  %>
+				</tr>
+			<% end %>
+		<% end %>
+	</tbody>
+</table>

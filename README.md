@@ -63,3 +63,7 @@ You can find your app by pointing your browser to [http://localhost:3000](http:/
 ```
 rspec -fd
 ```
+
+## Relational Schema
+
+![alt text](https://github.com/Jokushu/GGFinalProject/blob/main/public/Gigih-Family-Catering-ERD.png)

@@ -1,33 +1,14 @@
-# require 'logger'
-# require 'json'
+require 'logwrapper'
 
 class MenusController < ApplicationController
-	before_action :authorize_admin, only: [:new, :edit, :update, :destroy]	
+	before_action :authorize_admin, only: [:new, :edit, :update, :destroy]
 	before_action :set_menu, only: %i[show edit update destroy]
-	
+
   # GET /menus or /menus.json
   def index
     @menus = Menu.all
-
-    # logger = Logger.new(STDOUT)
-    # logger.formatter = proc do |severity, datetime, progname, msg|
-    #   date_format = datetime.strftime('%Y-%m-%d %H:%M:%S')
-    #   JSON.dump(
-    #     date: date_format.to_s,
-    #     severity: severity.ljust(5).to_s,
-    #     pid: Process.pid.to_s,
-    #     message: msg,
-    #     progname: progname.to_s
-    #   ) + "\n"
-    # end
-    
-    # # logger.level = Logger::WARN
-    # logger.debug("Fetch #{@menus.count} menus")
-    # logger.info('This is info')
-    # logger.warn('This is warn')
-    # logger.error('This is error')
-    # logger.fatal('This is fatal')
-
+    logs = Logwrapper::Logger.new($stdout)
+    logs.info('New menu!', extras:{request_id:"#{request.request_id}"})
   end
 
   # GET /menus/1 or /menus/1.json
@@ -37,6 +18,8 @@ class MenusController < ApplicationController
   # GET /menus/new
   def new
     @menu = Menu.new
+    logs = Logwrapper::Logger.new($stdout)
+    logs.info('New menu!', extras:{request_id:"#{request.request_id}"})
   end
 
   # GET /menus/1/edit
@@ -46,12 +29,14 @@ class MenusController < ApplicationController
   # POST /menus or /menus.json
   def create
     @menu = Menu.new(menu_params)
-
+    logs = Logwrapper::Logger.new($stdout)
     respond_to do |format|
       if @menu.save
+        logs.info('Menu created!', extras:{request_id:"#{request.request_id}"})
         format.html { redirect_to menu_url(@menu), notice: "Menu was successfully created." }
         format.json { render :show, status: :created, location: @menu }
       else
+        logs.error('Menu has unprocessable entity!', extras:{request_id:"#{request.request_id}"})
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @menu.errors, status: :unprocessable_entity }
       end

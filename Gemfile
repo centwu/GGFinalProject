@@ -56,8 +56,7 @@ gem 'devise', '~> 4.8', '>= 4.8.1'
 gem 'devise-bootstrapped', github: 'king601/devise-bootstrapped', branch: 'bootstrap4'
 gem "select2-rails"
 gem 'simple_form'
-gem 'lograge'
-gem 'lograge-sql'
+gem 'logwrapper', github: 'Jokushu/logwrapper', branch: 'main'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
